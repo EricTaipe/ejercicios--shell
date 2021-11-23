@@ -1,0 +1,36 @@
+nano usuario conectado
+#################################
+#! /bin/bash
+
+function ayuda() {
+
+cat << DESCRIPCION_AYUDA
+SYNOPSIS
+$0 NOMBRE_USUARIO
+
+DESCRIPCION
+Devuelve:
+SI si NOMBRE_USUARIO coinciden con algún usuario conectado o
+NO si NOMBRE_USUARIO no coincide con ningún usuario conectado
+
+DESCRIPCIÓN_AYUDA
+
+}
+
+# si número de parámetros distinto 1
+if [ $# -ne 1 ); then
+echo "El número de parámetros debe de igual a 1"
+ayuda
+exit 1
+fi
+
+ESTA_CONECTADO=`who | grep $1`
+
+if [ -z "$ESTA_CONECTADO" ]; then
+echo "NO"
+else echo "SI"
+fi
+exit
+###################################
+chmod u+x usuarioconectado
+./usuarioconectado 
